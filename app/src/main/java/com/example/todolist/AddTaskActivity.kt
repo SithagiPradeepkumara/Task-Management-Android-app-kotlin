@@ -18,8 +18,9 @@ class AddTaskActivity : AppCompatActivity() {
         db = TaskDatabesehelper(this)
 
         binding.saveButton.setOnClickListener{
-            val content = binding.task.text.toString()
-            val task = Task(0,content)
+            val title = binding.title.text.toString()
+            val content = binding.contentEdit.text.toString()
+            val task = Task(0,title, content)
             db.insertTask(task)
             finish()  //will do the same thing as intenet 
             Toast.makeText(this,"Task Saved",Toast.LENGTH_SHORT).show()

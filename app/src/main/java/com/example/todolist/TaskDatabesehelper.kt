@@ -13,11 +13,12 @@ class TaskDatabesehelper (context:Context):SQLiteOpenHelper(context, DATABASE_NA
         private const val DATABASE_VERSION= 1
         private const val TABLE_NAME = "alltasks"
         private const val COLUMN_ID = "id"
+        private const val COLUMN_TITLE = "title"
         private const val COLUMN_CONTENT = "content"
     }
 //creating sql
     override fun onCreate(db: SQLiteDatabase?) {
-        val createTableQuery = "CREATE TABLE $TABLE_NAME($COLUMN_ID INTEGER PRIMARY KEY,$COLUMN_CONTENT TEXT)"
+        val createTableQuery = "CREATE TABLE $TABLE_NAME($COLUMN_ID INTEGER PRIMARY KEY,$COLUMN_TITLE TEXT,$COLUMN_CONTENT TEXT)"
         db?.execSQL(createTableQuery) //execute using sql method
     }
 
@@ -32,6 +33,7 @@ class TaskDatabesehelper (context:Context):SQLiteOpenHelper(context, DATABASE_NA
         val db = writableDatabase
         //class that used to store value associated with column name
         val values = ContentValues().apply {
+            put(COLUMN_TITLE, task.content)
             put(COLUMN_CONTENT, task.content)
             //id is not here because it is generated automatically by sql database
         }

@@ -29,7 +29,7 @@
         android:layout_marginEnd="6dp"/>
 
     <EditText
-        android:id="@+id/task"
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:hint="Add the task"
@@ -38,7 +38,20 @@
         android:layout_below="@+id/addTaskHeading"
         android:background="@drawable/orange_border"
         android:layout_marginTop="16dp"
-        android:maxLines="3"/>
+        android:maxLines="1"/>
+
+    <EditText
+        android:id="@+id/contentEdit"
+        android:layout_width="395dp"
+        android:layout_height="232dp"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/orange_border"
+        android:gravity="top"
+        android:hint="Enter the description"
+        android:maxLines="10"
+        android:padding="12dp"
+        android:textSize="18dp" />
 
 
 </RelativeLayout>
