@@ -19,7 +19,8 @@ class AddTaskActivity : AppCompatActivity() {
 
         binding.saveButton.setOnClickListener{
             val title = binding.title.text.toString()
-            val content = binding.contentEdit.text.toString()
+            val content = binding.contentEditText.text.toString()
+            //val task = Task(0, content)
             val task = Task(0,title, content)
             db.insertTask(task)
             finish()  //will do the same thing as intenet 

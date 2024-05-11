@@ -19,7 +19,7 @@ class TaskDatabesehelper (context:Context):SQLiteOpenHelper(context, DATABASE_NA
 //creating sql
     override fun onCreate(db: SQLiteDatabase?) {
         val createTableQuery = "CREATE TABLE $TABLE_NAME($COLUMN_ID INTEGER PRIMARY KEY,$COLUMN_TITLE TEXT,$COLUMN_CONTENT TEXT)"
-        db?.execSQL(createTableQuery) //execute using sql method
+      db?.execSQL(createTableQuery) //execute using sql method
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -33,11 +33,35 @@ class TaskDatabesehelper (context:Context):SQLiteOpenHelper(context, DATABASE_NA
         val db = writableDatabase
         //class that used to store value associated with column name
         val values = ContentValues().apply {
-            put(COLUMN_TITLE, task.content)
+            put(COLUMN_TITLE, task.title)
             put(COLUMN_CONTENT, task.content)
             //id is not here because it is generated automatically by sql database
         }
         db.insert(TABLE_NAME,null,values)
         db.close()
+    }
+
+    //read data
+
+    fun getAllTasks():List<Task>{
+        val tasksList = mutableListOf<Task>()
+        val db = readableDatabase
+        val query  = "SELECT * FROM  $TABLE_NAME"
+        val cursor = db.rawQuery(query,null)
+
+         //retrieving data
+        while (cursor.moveToNext()){
+            val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
+            val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
+            val content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+
+            //store above data
+            val  task = Task(id,title,content)
+
+            tasksList.add(task)
+        }
+        cursor.close()
+        db.close()
+        return tasksList
     }
 }

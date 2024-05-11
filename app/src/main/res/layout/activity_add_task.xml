@@ -41,7 +41,7 @@
         android:maxLines="1"/>
 
     <EditText
-        android:id="@+id/contentEdit"
+        android:id="@+id/contentEditText"
         android:layout_width="395dp"
         android:layout_height="232dp"
         android:layout_below="@+id/title"
