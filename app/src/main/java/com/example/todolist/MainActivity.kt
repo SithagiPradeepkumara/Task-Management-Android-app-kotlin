@@ -18,19 +18,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         db = TaskDatabesehelper(this)
-        tasksAdapter = TasksAdapter(db.getAllTasks(),this)
+        tasksAdapter = TasksAdapter(db.getAllTasks(), this)
 
-        binding.tasksRecyclerView.layoutManager=LinearLayoutManager(this)
-        binding.tasksRecyclerView.adapter=tasksAdapter
+        binding.tasksRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.tasksRecyclerView.adapter = tasksAdapter
 
-        binding.addButton.setOnClickListener{
+        binding.addButton.setOnClickListener {
             //to go from main to add task
-            val intent = Intent(this,AddTaskActivity::class.java)
+            val intent = Intent(this, AddTaskActivity::class.java)
             startActivity(intent)
         }
-        fun onResume() {
+    }
+        override fun onResume() {
             super.onResume()
             tasksAdapter.refreshData(db.getAllTasks())
         }
     }
-}

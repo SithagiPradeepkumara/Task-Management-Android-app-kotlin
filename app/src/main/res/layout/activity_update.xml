@@ -16,7 +16,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="16dp"
         android:text="edit Task"
-        android:textColor="@color/orange"
+        android:textColor="@color/purple"
         android:textSize="24sp" />
 
     <ImageView
@@ -36,7 +36,7 @@
         android:padding="12dp"
         android:textSize="20dp"
         android:layout_below="@+id/ediTaskHeading"
-        android:background="@drawable/orange_border"
+        android:background="@drawable/purple_border"
         android:layout_marginTop="16dp"
         android:maxLines="1"/>
 
@@ -46,7 +46,7 @@
         android:layout_height="232dp"
         android:layout_below="@+id/updatetitle"
         android:layout_marginTop="32dp"
-        android:background="@drawable/orange_border"
+        android:background="@drawable/purple_border"
         android:gravity="top"
         android:hint="Enter the description"
         android:maxLines="10"
