@@ -47,21 +47,27 @@ class TaskDatabesehelper (context:Context):SQLiteOpenHelper(context, DATABASE_NA
 
     //read data
 
-    fun getAllTasks():List<Task>{
+    fun getAllTasks(): List<Task> {
         val tasksList = mutableListOf<Task>()
         val db = readableDatabase
-        val query  = "SELECT * FROM  $TABLE_NAME"
-        val cursor = db.rawQuery(query,null)
+        val query = "SELECT * FROM $TABLE_NAME ORDER BY " +
+                "CASE $COLUMN_PRIORITY " +
+                "WHEN 'high' THEN 1 " +
+                "WHEN 'medium' THEN 2 " +
+                "WHEN 'low' THEN 3 " +
+                "ELSE 4 " +
+                "END"
+        val cursor = db.rawQuery(query, null)
 
-         //retrieving data
-        while (cursor.moveToNext()){
+        // Retrieving data
+        while (cursor.moveToNext()) {
             val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
             val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
             val content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
             val date = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE))
             val priority = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PRIORITY))
-            //store above data
-            val  task = Task(id,title,content,date,priority)
+            // Store above data
+            val task = Task(id, title, content, date, priority)
 
             tasksList.add(task)
         }
