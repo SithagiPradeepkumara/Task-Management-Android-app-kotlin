@@ -53,5 +53,31 @@
         android:padding="12dp"
         android:textSize="18dp" />
 
+    <TextView
+        android:id="@+id/updateTextDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dd/mm/yyyy"
+        android:textSize="18sp"
+        android:textColor="@color/purple"
+        android:fontFamily="@font/poppins"
+        android:layout_below="@+id/updatecontentEditText"
+        android:layout_marginTop="42dp"
+        android:layout_marginStart="32dp"/>
+
+
+    <Button
+        android:id="@+id/updateButtonDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/updateTextDate"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="46dp"
+        android:backgroundTint="@color/purple"
+        android:fontFamily="@font/poppins"
+        android:text="change Date"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
 
 </RelativeLayout>

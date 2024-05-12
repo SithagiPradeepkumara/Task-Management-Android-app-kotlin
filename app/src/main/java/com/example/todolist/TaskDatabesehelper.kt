@@ -15,10 +15,11 @@ class TaskDatabesehelper (context:Context):SQLiteOpenHelper(context, DATABASE_NA
         private const val COLUMN_ID = "id"
         private const val COLUMN_TITLE = "title"
         private const val COLUMN_CONTENT = "content"
+        private const val COLUMN_DATE = "date"
     }
 //creating sql
     override fun onCreate(db: SQLiteDatabase?) {
-        val createTableQuery = "CREATE TABLE $TABLE_NAME($COLUMN_ID INTEGER PRIMARY KEY,$COLUMN_TITLE TEXT,$COLUMN_CONTENT TEXT)"
+        val createTableQuery = "CREATE TABLE $TABLE_NAME($COLUMN_ID INTEGER PRIMARY KEY,$COLUMN_TITLE TEXT,$COLUMN_CONTENT TEXT,$COLUMN_DATE TEXT)"
       db?.execSQL(createTableQuery) //execute using sql method
     }
 
@@ -35,6 +36,7 @@ class TaskDatabesehelper (context:Context):SQLiteOpenHelper(context, DATABASE_NA
         val values = ContentValues().apply {
             put(COLUMN_TITLE, task.title)
             put(COLUMN_CONTENT, task.content)
+            put(COLUMN_DATE,task.date)
             //id is not here because it is generated automatically by sql database
         }
         db.insert(TABLE_NAME,null,values)
@@ -54,9 +56,9 @@ class TaskDatabesehelper (context:Context):SQLiteOpenHelper(context, DATABASE_NA
             val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
             val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
             val content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
-
+            val date = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE))
             //store above data
-            val  task = Task(id,title,content)
+            val  task = Task(id,title,content,date)
 
             tasksList.add(task)
         }
@@ -70,26 +72,36 @@ class TaskDatabesehelper (context:Context):SQLiteOpenHelper(context, DATABASE_NA
         val values = ContentValues().apply {
             put(COLUMN_TITLE,task.title)
             put(COLUMN_CONTENT,task.content)
+            put(COLUMN_DATE,task.date)
         }
         val whereClause = "$COLUMN_ID = ?"
         val whereArgs = arrayOf(task.id.toString())
         db.update(TABLE_NAME,values,whereClause,whereArgs)
         db.close()
     }
+    //different in here ****
     fun getTaskByID(taskId:Int): Task{
         val db=readableDatabase
         //sql querey
         val query = "SELECT* FROM $TABLE_NAME WHERE $COLUMN_ID= $taskId"
+        val selectionArgs = arrayOf(taskId.toString())
         val cursor = db.rawQuery(query,null)
         cursor.moveToFirst()
 
-        val id= cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
-        val title= cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
-        val content= cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+        var task = Task(-1, "", "", "") // Initialize with default values
 
+        if (cursor.moveToFirst()) {
+            val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
+            val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
+            val content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+            val date = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE))
+
+            task = Task(id, title, content, date)
+        }
         cursor.close()
         db.close()
-        return Task(id, title, content)
+        return task
+
     }
     //delete
     fun deleteTask(taskId: Int){
