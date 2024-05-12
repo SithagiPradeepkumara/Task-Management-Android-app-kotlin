@@ -29,7 +29,9 @@ class AddTaskActivity : AppCompatActivity() {
             val title = binding.title.text.toString()
             val content = binding.contentEditText.text.toString()
             val date = binding.textDate.text.toString()
-            val task = Task(0, title, content, date)
+            val priority = binding.priorityEditText.text.toString()
+            val task = Task(0, title, content, date,priority)
+
             db.insertTask(task)
             finish()  //will do the same thing as intenet 
             Toast.makeText(this, "Task Saved", Toast.LENGTH_SHORT).show()

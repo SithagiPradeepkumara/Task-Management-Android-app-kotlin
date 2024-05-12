@@ -20,6 +20,7 @@ class TasksAdapter (private var task:List<Task>,context: Context):
         val title:TextView = itemView.findViewById(R.id.title)
         val contentEditText:TextView = itemView.findViewById(R.id.contentEdit)
         val dateTextView: TextView = itemView.findViewById(R.id.dateTextView)
+        val priorityEditText:TextView = itemView.findViewById(R.id.priorityEdit)
         val updateButton:ImageView = itemView.findViewById(R.id.updateButton)
         val deleteButton:ImageView = itemView.findViewById(R.id.deleteButton)
     }
@@ -36,6 +37,7 @@ class TasksAdapter (private var task:List<Task>,context: Context):
         holder.title.text = task.title
         holder.contentEditText.text=task.content
         holder.dateTextView.text = task.date
+        holder.priorityEditText.text=task.priority
 
         //update by on click
         holder.updateButton.setOnClickListener{
