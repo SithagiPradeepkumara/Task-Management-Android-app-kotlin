@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".UpdateActivity">
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="16dp"
-        android:text="edit Task"
+        android:text="Edit Task"
         android:textColor="@color/purple"
         android:textSize="24sp" />
 
@@ -23,22 +23,22 @@
         android:id="@+id/UpdatesaveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/baseline_done_24"
-        android:layout_alignParentEnd="true"
         android:layout_alignTop="@id/ediTaskHeading"
-        android:layout_marginEnd="6dp"/>
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="6dp"
+        android:src="@drawable/baseline_done_24" />
 
     <EditText
         android:id="@+id/updatetitle"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="Add the task"
-        android:padding="12dp"
-        android:textSize="20dp"
         android:layout_below="@+id/ediTaskHeading"
-        android:background="@drawable/purple_border"
         android:layout_marginTop="16dp"
-        android:maxLines="1"/>
+        android:background="@drawable/purple_border"
+        android:hint="Add the task"
+        android:maxLines="1"
+        android:padding="12dp"
+        android:textSize="20dp" />
 
     <EditText
         android:id="@+id/updatecontentEditText"
@@ -57,13 +57,13 @@
         android:id="@+id/updateTextDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="dd/mm/yyyy"
-        android:textSize="18sp"
-        android:textColor="@color/purple"
-        android:fontFamily="@font/poppins"
         android:layout_below="@+id/updatecontentEditText"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="42dp"
-        android:layout_marginStart="32dp"/>
+        android:fontFamily="@font/poppins"
+        android:text="dd/mm/yyyy"
+        android:textColor="@color/purple"
+        android:textSize="18sp" />
 
 
     <Button

@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         binding.tasksRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.tasksRecyclerView.adapter = tasksAdapter
 
+
+
         binding.addButton.setOnClickListener {
             //to go from main to add task
             val intent = Intent(this, AddTaskActivity::class.java)
